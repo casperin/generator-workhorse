@@ -27,30 +27,19 @@ function * myGenerator ({resolve}, id) {
 // running the generator
 const workhorse = require('workhorse')
 
-function * wrapper (gen, id) {
-  const it = gen(workhorse.effects, id)
-  let result
+const it = myGenerator(workhorse.effects, 42)
 
-  while (true) {
-    const {value, done} = it.next(result)
-    if (done) return
-    if (workhorse.isEffect(value)) {
-      result = yield value
-    } else {
-      // You got your friends
-    }
-  }
-}
-
-const handle = it => {
-  const next = (err, data) => {
-    if (err) return
-    const {value, done} = it.next(data)
+const next (err, data) => {
+  if (err) return // or throw
+  const {value, done} = it.next()
+  if (done) return
+  if (workhorse.isEffect(value)) {
     workhorse.handleEffect(value, next)
+  } else {
+    // some other yield
   }
-  next()
 }
 
-handle(wrapper(gen, 42))
+next()
 ```
 

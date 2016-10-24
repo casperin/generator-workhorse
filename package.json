@@ -1,0 +1,19 @@
+{
+  "name": "generator-workhorse",
+  "version": "0.0.1",
+  "description": "Doing the work for generators (while they pause and wait)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casperin/generator-workhorse.git"
+  },
+  "author": "Gorm Casper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/casperin/generator-workhorse/issues"
+  },
+  "homepage": "https://github.com/casperin/generator-workhorse#readme"
+}
