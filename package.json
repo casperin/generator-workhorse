@@ -1,10 +1,10 @@
 {
   "name": "generator-workhorse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Doing the work for generators (while they pause and wait)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/casperin/generator-workhorse/issues"
   },
-  "homepage": "https://github.com/casperin/generator-workhorse#readme"
+  "homepage": "https://github.com/casperin/generator-workhorse#readme",
+  "devDependencies": {
+    "tape": "^4.6.2"
+  }
 }

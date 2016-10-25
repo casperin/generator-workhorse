@@ -7,19 +7,12 @@ module.exports = () => {
   }
 
   const handlers = {
-    call: ({fn, args}, cb) => cb(fn(...args)),
-    cps: ({fn, args}, cb) => {
-      fn(...args, (err, ..._args) => {
-        if (err) throw Error(`${fn.name} threw with: ${err}`)
-        else cb(..._args)
-      })
-    },
+    call: ({fn, args}, cb) => cb(null, fn(...args)),
+    cps: ({fn, args}, cb) => fn(...args, cb),
     resolve: ({fn, args}, cb) => {
       fn(...args)
-      .then(response => cb(response))
-      .catch(err => {
-        throw Error(`${fn.name} threw with: ${err}`)
-      })
+      .then(response => cb(null, response))
+      .catch(cb)
     },
     wait: ({ms}, cb) => setTimeout(cb, ms)
   }
@@ -39,7 +32,7 @@ module.exports = () => {
   const handleEffect = (effect, cb) => {
     if (!isEffect(effect)) cb(Error(`Expected an effect, got ${effect} with type ${effect.type}`))
     try {
-      handlers[effect.type](effect, (...args) => cb(null, ...args))
+      handlers[effect.type](effect, cb)
     } catch (e) {
       cb(e)
     }
