@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/casperin/generator-workhorse.svg?style=svg)](https://circleci.com/gh/casperin/generator-workhorse)
+
 # Generator-workhorse
 
 Used to make generators pause while work (requested by them) is being done.
